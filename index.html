@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Bingo Blast - Advanced Gaming Experience</title>
+    <meta name="description" content="Experience the ultimate Bingo gaming platform with stunning visuals and smooth gameplay.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">
+                    <div class="logo-icon">🎯</div>
+                    <div class="logo-text">Bingo Blast</div>
+                </div>
+                <div id="walletDisplay" class="wallet-badge">
+                    <i class="fas fa-wallet"></i>
+                    <span id="walletAmount">1000.00</span> BBR
+                </div>
+            </div>
+            
+            <div id="navItems" class="nav-items">
+                <button class="nav-item active" data-view="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </button>
+                <button class="nav-item" data-view="rooms">
+                    <i class="fas fa-grid-3x3"></i>
+                    <span>Number Rooms</span>
+                </button>
+                <button class="nav-item" data-view="leaderboard">
+                    <i class="fas fa-trophy"></i>
+                    <span>Leaderboard</span>
+                </button>
+                <button class="nav-item" data-view="wallet">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Wallet</span>
+                </button>
+                <button class="nav-item" data-view="profile">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </button>
+            </div>
+            
+            <div class="nav-controls">
+                <button id="themeToggle" class="control-btn">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="userMenuBtn" class="user-btn">
+                    <img id="userAvatar" src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="User Avatar" class="user-avatar">
+                    <span id="userName">Player</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobileNav" class="mobile-nav">
+            <button class="mobile-nav-item active" data-view="home">
+                <i class="fas fa-home"></i>
+            </button>
+            <button class="mobile-nav-item" data-view="rooms">
+                <i class="fas fa-grid-3x3"></i>
+            </button>
+            <button class="mobile-nav-item" data-view="leaderboard">
+                <i class="fas fa-trophy"></i>
+            </button>
+            <button class="mobile-nav-item" data-view="wallet">
+                <i class="fas fa-credit-card"></i>
+            </button>
+            <button class="mobile-nav-item" data-view="profile">
+                <i class="fas fa-user"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="mainContent" class="main-content">
+        <!-- Home View -->
+        <div id="homeView" class="view-container home-view">
+            <div class="hero-section">
+                <div class="hero-background"></div>
+                <div class="hero-content">
+                    <h1 class="hero-title">Welcome to Bingo Blast!</h1>
+                    <p class="hero-subtitle">Experience the most advanced Bingo game with stunning visuals</p>
+                    <button class="cta-button" onclick="switchView('rooms')">
+                        <i class="fas fa-play"></i>
+                        <span>Start Playing</span>
+                        <div class="button-glow"></div>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="userTotalWinnings">0.00</div>
+                        <div class="stat-label">Total Winnings</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="userGamesWon">0</div>
+                        <div class="stat-label">Games Won</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="userWinRate">0%</div>
+                        <div class="stat-label">Win Rate</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="userStreak">0</div>
+                        <div class="stat-label">Win Streak</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Number Rooms View -->
+        <div id="roomsView" class="view-container rooms-view hidden">
+            <div class="view-header">
+                <div class="view-title-section">
+                    <h1 class="view-title">Choose Your Lucky Number</h1>
+                    <p class="view-subtitle">Select a number from 1-200 to generate your unique Bingo card</p>
+                </div>
+                <div class="room-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span id="onlinePlayersCount">1,247</span>
+                        <small>Online</small>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-gamepad"></i>
+                        <span id="activeGamesCount">23</span>
+                        <small>Active Games</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="number-selection-container">
+                <div class="selection-header">
+                    <h3>Select Your Lucky Number</h3>
+                    <div class="search-container">
+                        <i class="fas fa-search"></i>
+                        <input type="number" id="numberSearch" placeholder="Jump to number..." min="1" max="200">
+                    </div>
+                </div>
+                
+                <div id="numberGrid" class="number-grid">
+                    <!-- Numbers 1-200 will be generated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Game View -->
+        <div id="gameView" class="view-container game-view hidden">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2 id="gameRoomTitle">Room #<span id="selectedNumber">1</span></h2>
+                    <div class="game-status">
+                        <div class="status-indicator" id="gameStatus">
+                            <div class="status-dot"></div>
+                            <span>Preparing Game...</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="leaveGameBtn" class="leave-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Leave Game</span>
+                </button>
+            </div>
+            
+            <!-- Countdown Section -->
+            <div id="countdownSection" class="countdown-section">
+                <div class="countdown-container">
+                    <h3>Game Starting In</h3>
+                    <div id="countdownTimer" class="countdown-timer">30</div>
+                    <div class="countdown-progress">
+                        <div id="countdownBar" class="countdown-bar"></div>
+                    </div>
+                    <p>Get ready! Your card has been generated automatically.</p>
+                </div>
+            </div>
+            
+            <div class="game-content">
+                <div class="game-left">
+                    <!-- Called Numbers Display -->
+                    <div id="gameBoard" class="game-board">
+                        <div class="called-number-display">
+                            <div class="ball-container">
+                                <div id="currentBall" class="bingo-ball">
+                                    <span id="ballNumber">—</span>
+                                </div>
+                                <div class="ball-letter" id="ballLetter">—</div>
+                            </div>
+                            <div class="call-info">
+                                <div class="call-text">Last Called</div>
+                                <div id="gameTimer" class="game-timer">
+                                    <i class="fas fa-clock"></i>
+                                    <span id="timerDisplay">00:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="called-numbers-section">
+                            <h4>Called Numbers</h4>
+                            <div class="called-numbers-grid">
+                                <div class="column">
+                                    <div class="column-header">B</div>
+                                    <div id="calledB" class="called-column"></div>
+                                </div>
+                                <div class="column">
+                                    <div class="column-header">I</div>
+                                    <div id="calledI" class="called-column"></div>
+                                </div>
+                                <div class="column">
+                                    <div class="column-header">N</div>
+                                    <div id="calledN" class="called-column"></div>
+                                </div>
+                                <div class="column">
+                                    <div class="column-header">G</div>
+                                    <div id="calledG" class="called-column"></div>
+                                </div>
+                                <div class="column">
+                                    <div class="column-header">O</div>
+                                    <div id="calledO" class="called-column"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-right">
+                    <!-- Bingo Card -->
+                    <div class="bingo-card-container">
+                        <div class="card-header">
+                            <h3>Your Bingo Card</h3>
+                            <div class="card-number">Room #<span id="cardRoomNumber">1</span></div>
+                        </div>
+                        <div class="bingo-card">
+                            <div class="card-letters">
+                                <div class="letter">B</div>
+                                <div class="letter">I</div>
+                                <div class="letter">N</div>
+                                <div class="letter">G</div>
+                                <div class="letter">O</div>
+                            </div>
+                            <div id="bingoCard" class="card-grid">
+                                <!-- Card will be generated automatically -->
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button id="bingoBtn" class="bingo-btn hidden">
+                                <i class="fas fa-star"></i>
+                                <span>BINGO!</span>
+                                <div class="btn-sparkle"></div>
+                            </button>
+                            <button id="autoMarkBtn" class="auto-mark-btn">
+                                <i class="fas fa-magic"></i>
+                                <span>Auto Mark</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Stats -->
+                    <div class="game-stats-panel">
+                        <h4>Game Statistics</h4>
+                        <div class="stats-list">
+                            <div class="stat-row">
+                                <span>Numbers Called:</span>
+                                <span id="numbersCalledCount">0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Marked Numbers:</span>
+                                <span id="markedCount">0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Completion:</span>
+                                <span id="completionRate">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard View -->
+        <div id="leaderboardView" class="view-container leaderboard-view hidden">
+            <div class="view-header">
+                <h1 class="view-title">🏆 Leaderboard</h1>
+                <div class="leaderboard-tabs">
+                    <button class="tab-btn active" data-period="weekly">Weekly</button>
+                    <button class="tab-btn" data-period="monthly">Monthly</button>
+                    <button class="tab-btn" data-period="allTime">All Time</button>
+                </div>
+            </div>
+            <div id="leaderboardList" class="leaderboard-list">
+                <!-- Leaderboard entries will be populated dynamically -->
+            </div>
+        </div>
+
+        <!-- Wallet View -->
+        <div id="walletView" class="view-container wallet-view hidden">
+            <div class="view-header">
+                <h1 class="view-title">💳 Wallet</h1>
+                <div class="wallet-balance">
+                    <span class="balance-label">Balance:</span>
+                    <span class="balance-amount" id="walletBalanceDisplay">1000.00 BBR</span>
+                </div>
+            </div>
+            
+            <div class="wallet-actions">
+                <button id="depositBtn" class="wallet-action-btn deposit">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Deposit</span>
+                </button>
+                <button id="withdrawBtn" class="wallet-action-btn withdraw">
+                    <i class="fas fa-minus-circle"></i>
+                    <span>Withdraw</span>
+                </button>
+            </div>
+            
+            <div class="wallet-content">
+                <div class="transaction-history">
+                    <h3>Transaction History</h3>
+                    <div id="transactionsList" class="transactions-list">
+                        <!-- Transactions will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile View -->
+        <div id="profileView" class="view-container profile-view hidden">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img id="profileAvatar" src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" alt="Profile Picture" class="avatar-img">
+                    <div class="avatar-status"></div>
+                </div>
+                <div class="profile-info">
+                    <h2 id="profileUsername">Player</h2>
+                    <p id="profileLevel">Level 1 Player</p>
+                    <div class="profile-stats">
+                        <span>Member since Jan 2025</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-section">
+                    <h3>🎮 Game Statistics</h3>
+                    <div class="statistics-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalGamesPlayed">0</div>
+                            <div class="stat-label">Games Played</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalTimeSpent">0h</div>
+                            <div class="stat-label">Time Spent</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="favoriteNumber">—</div>
+                            <div class="stat-label">Lucky Number</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="longestStreak">0</div>
+                            <div class="stat-label">Best Streak</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Game Result Modal -->
+    <div id="gameResultModal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content result-modal">
+            <div class="result-animation">
+                <div id="resultIcon" class="result-icon">🏆</div>
+                <div class="confetti"></div>
+            </div>
+            <h2 id="resultTitle" class="result-title">Congratulations!</h2>
+            <p id="resultMessage" class="result-message">You achieved BINGO!</p>
+            <div class="result-actions">
+                <button id="playAgainBtn" class="primary-btn">
+                    <i class="fas fa-redo"></i>
+                    <span>Play Again</span>
+                </button>
+                <button id="backToRoomsBtn" class="secondary-btn">
+                    <span>Back to Rooms</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen hidden">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <h2>Generating Your Card...</h2>
+            <p>Please wait while we create your unique Bingo experience</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
